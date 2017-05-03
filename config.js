@@ -2,8 +2,10 @@
 
 let url = require('url')
 let env = process.env
+const argv = require('yargs').argv
 
 module.exports = {
+  alwaysHttps: (argv.alwaysHttps || env.NPM_REGISTER_ALWAYS_HTTPS === 'true'),
   port: env.PORT || 3000,
   production: !!['production', 'staging'].find(e => e === env.NODE_ENV),
   timeout: parseInt(env.TIMEOUT) || 10000,
